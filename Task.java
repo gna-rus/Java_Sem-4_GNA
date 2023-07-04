@@ -81,24 +81,31 @@ class Main
 {
 	public static void main (String[] args)
 	{
-		Deque stack = new Deque(3);
+	    int OneNum = 123;
+	    int TwoNum = 456;
+		Deque stackOne = new Deque(String.valueOf(OneNum).length());
+		Deque stackTwo = new Deque(String.valueOf(OneNum).length());
+		
+		while (!stackOne.isFull())
+		{
+		    int OneNum1 = OneNum % 10;
+		    OneNum = OneNum / 10;
+		    stackOne.push(OneNum1);
+		    
+		}
 
-		stack.push(1);  	
-		stack.push(2);  	
-
-		stack.pop();		
-		stack.pop();		
+		stackOne.pop();		
+		stackOne.pop();		
+	
 	
 
-		stack.push(333);  	
+		System.out.println("The top element is " + stackOne.peek());
+		System.out.println("The stack size is " + stackOne.size());
 
-		System.out.println("The top element is " + stack.peek());
-		System.out.println("The stack size is " + stack.size());
-
-		stack.pop();		// removing the top element (3)
+		stackOne.pop();		// removing the top element (3)
 
 		// check if the stack is empty
-		if (stack.isEmpty()) {
+		if (stackOne.isEmpty()) {
 			System.out.println("The stack is empty");
 		}
 		else {
