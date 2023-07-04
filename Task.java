@@ -66,11 +66,13 @@ class Deque {
 class Task {
     public static void main(String[] args) {
         // ввожу числа
-        int OneNum = -111;
+        int OneNum = -87;
         int TwoNum = 22;
         // нахожу результат умножения и сложения
         int RezOfOneTwo = OneNum * TwoNum;
         int RezSumOfOneTwo = OneNum + TwoNum;
+        System.out.println("Результат суммы: " + RezSumOfOneTwo);
+        System.out.println("Результат умнажения: " + RezOfOneTwo);
 
         // Создаю Deque для каждой переменной и результата исчисления, передаю в Deque размеры переменной
         Deque stackOne = new Deque(String.valueOf(OneNum).length());
@@ -124,6 +126,7 @@ class Task {
             stackRez.push(RezOfOneTwo1);
         }
         // извлекаю результат умножения из Deque, очищая сам Deque
+
         System.out.print("Multiplication: ");
         while (!stackRez.isEmpty()) {
             System.out.print(stackRez.pop() + " ");
