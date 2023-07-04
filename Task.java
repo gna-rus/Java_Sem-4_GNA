@@ -41,9 +41,6 @@ class Deque
 			System.out.println("Underflow\nProgram Terminated");
 			System.exit(-1);
 		}
-
-		System.out.println("Removing " + peek());
-
 		// decrease stack size by 1 and (optionally) return the popped element
 		return arr[top--];
 	}
@@ -81,35 +78,53 @@ class Main
 {
 	public static void main (String[] args)
 	{
-	    int OneNum = 123;
-	    int TwoNum = 456;
+	    int OneNum = 11;
+	    int TwoNum = 21;
+	    int RezOfOneTwo = OneNum * TwoNum;
+	    
 		Deque stackOne = new Deque(String.valueOf(OneNum).length());
-		Deque stackTwo = new Deque(String.valueOf(OneNum).length());
+		Deque stackTwo = new Deque(String.valueOf(TwoNum).length());
+		Deque stackRez = new Deque(String.valueOf(RezOfOneTwo).length());
 		
 		while (!stackOne.isFull())
 		{
 		    int OneNum1 = OneNum % 10;
 		    OneNum = OneNum / 10;
 		    stackOne.push(OneNum1);
-		    
 		}
-
-		stackOne.pop();		
-		stackOne.pop();		
-	
-	
-
-		System.out.println("The top element is " + stackOne.peek());
 		System.out.println("The stack size is " + stackOne.size());
-
-		stackOne.pop();		// removing the top element (3)
-
-		// check if the stack is empty
-		if (stackOne.isEmpty()) {
-			System.out.println("The stack is empty");
+		
+		
+		while (!stackTwo.isFull())
+		{
+		    int TwoNum1 = TwoNum % 10;		    
+		    TwoNum = TwoNum / 10;
+		    stackTwo.push(TwoNum1);
 		}
-		else {
-			System.out.println("The stack is not empty");
+		System.out.println("The stack size is " + stackTwo.size());
+		
+		
+		while (!stackOne.isEmpty())
+		{
+		    System.out.print(stackOne.pop() + " ");
 		}
-	}
+		
+		while (!stackTwo.isEmpty())
+		{
+		    System.out.print(stackTwo.pop() + " ");
+		}
+		
+	//	System.out.println("The top element is " + stackOne.peek());
+		
+		
+		while (!stackRez.isFull())
+		{
+		    int RezOfOneTwo1 = RezOfOneTwo % 10;
+		    RezOfOneTwo = RezOfOneTwo / 10;
+		    stackOne.push(RezOfOneTwo1);
+		}
+		System.out.println("The stack size is " + stackRez.size());
+		
+
+	}	
 }
