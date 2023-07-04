@@ -5,152 +5,148 @@
 //2) Сложите два числа и верните сумму в виде связанного списка. Одно или два числа должны быть отрицательными.
 //3)*Реализовать стэк с помощью массива. Нужно реализовать методы: size(), empty(), push(), peek(), pop().
 
-class Deque
-{
-	private int arr[];
-	private int top;
-	private int capacity;
+class Deque {
+    private int arr[];
+    private int top;
+    private int capacity;
 
-	// Constructor to initialize the stack
-	Deque(int size)
-	{
-		arr = new int[size+1];
-		capacity = size;
-		top = -1;
-	}
+    Deque(int size) {
+        arr = new int[size + 1];
+        capacity = size;
+        top = -1;
+    }
 
-	// Utility function to add an element `x` to the stack
-	public void push(int x)
-	{
-		if (isFull())
-		{
-			System.out.println("Overflow");
-			System.exit(-1);
-		}
+    // реализация метода push с проверкой на переполнение коллекции
+    public void push(int x) {
+        if (isFull()) {
+            System.out.println("Overflow");
+            System.exit(-1);
+        }
 
-		System.out.println("add " + x);
-		arr[++top] = x;
-	}
+        System.out.println("add " + x);
+        arr[++top] = x;
+    }
 
-	// Utility function to pop a top element from the stack
-	public int pop()
-	{
-		// check for stack underflow
-		if (isEmpty())
-		{
-			System.out.println("Underflow");
-			System.exit(-1);
-		}
-		// decrease stack size by 1 and (optionally) return the popped element
-		return arr[top--];
-	}
+    // реализация метода pop с проверкой опустожение коллекции
+    public int pop() {
 
-	// Utility function to return the top element of the stack
-	public int peek()
-	{
-		if (!isEmpty()) {
-			return arr[top];
-		}
-		else {
-			System.exit(-1);
-		}
+        if (isEmpty()) {
+            System.out.println("Underflow");
+            System.exit(-1);
+        }
+        return arr[top--];
+    }
 
-		return -1;
-	}
+    // реализация метода peek, без удаления самого элемента из коллекции
+    public int peek() {
+        if (!isEmpty()) {
+            return arr[top];
+        } else {
+            System.exit(-1);
+        }
+        return -1;
+    }
 
-	// Utility function to return the size of the stack
-	public int size() {
-		return top + 1;
-	}
+    // реализация метода size
+    public int size() {
+        return top + 1;
+    }
 
-	// Utility function to check if the stack is empty or not
-	public boolean isEmpty() {
-		return top == -1;   			// or return size() == 0;
-	}
+    // проверка на пустоту коллекции
+    public boolean isEmpty() {
+        return top == -1;
+    }
 
-	// Utility function to check if the stack is full or not
-	public boolean isFull() {
-		return top == capacity - 1; 	// or return size() == capacity;
-	}
+    // проверка на заполненость коллекции
+    public boolean isFull() {
+        return top == capacity - 1;
+    }
 }
 
-class Main
-{
-	public static void main (String[] args)
-	{
-	    int OneNum = -111;
-	    int TwoNum = 22;
-	    int RezOfOneTwo = OneNum * TwoNum;
-	    int RezSumOfOneTwo = OneNum + TwoNum;
-	    
-		Deque stackOne = new Deque(String.valueOf(OneNum).length());
-		Deque stackTwo = new Deque(String.valueOf(TwoNum).length());
-		Deque stackRez = new Deque(String.valueOf(RezOfOneTwo).length());
-		Deque stackRezSum = new Deque(String.valueOf(RezSumOfOneTwo).length());
-		
-		while (!stackOne.isFull())
-		{
-		    int OneNum1 = OneNum % 10;
-		    OneNum = OneNum / 10;
-		    stackOne.push(OneNum1);
-		}
-		System.out.println("The stack size is " + stackOne.size());
-		
-		
-		while (!stackTwo.isFull())
-		{
-		    int TwoNum1 = TwoNum % 10;		    
-		    TwoNum = TwoNum / 10;
-		    stackTwo.push(TwoNum1);
-		}
-		System.out.println("The stack size is " + stackTwo.size());
-		
-		
-		while (!stackOne.isEmpty())
-		{
-		    System.out.print(stackOne.pop() + " ");
-		}
-		
-		while (!stackTwo.isEmpty())
-		{
-		    System.out.print(stackTwo.pop() + " ");
-		}
-		System.out.println();
-		
-	    //	System.out.println("The top element is " + stackOne.peek());
-		////////////////////
-		while (!stackRez.isFull())
-		{
-		    int RezOfOneTwo1 = RezOfOneTwo % 10;
-		    RezOfOneTwo = RezOfOneTwo / 10;
-		    stackRez.push(RezOfOneTwo1);
-		}
-		
-		System.out.print("Multiplication: ");
-		while (!stackRez.isEmpty())
-		{
-		    System.out.print(stackRez.pop() + "");
-		}
-		System.out.println();
-		System.out.println("The stack size is " + stackRez.size());
-		////////////////////
-		
-		
-		while (!stackRezSum.isFull())
-		{
-		    int RezSumOfOneTwo1 = RezSumOfOneTwo % 10;
-		    RezSumOfOneTwo = RezSumOfOneTwo / 10;
-		    stackRezSum.push(RezSumOfOneTwo1);
-		}
-		
-		System.out.print("Sum: ");
-		while (!stackRezSum.isEmpty())
-		{
-		    System.out.print(stackRezSum.pop() + " ");
-		}
-		System.out.println();
-		System.out.println("The stack size is " + stackRezSum.size());
-		
+class Task {
+    public static void main(String[] args) {
+        // ввожу числа
+        int OneNum = -111;
+        int TwoNum = 22;
+        // нахожу результат умножения и сложения
+        int RezOfOneTwo = OneNum * TwoNum;
+        int RezSumOfOneTwo = OneNum + TwoNum;
 
-	}	
+        // Создаю Deque для каждой переменной и результата исчисления, передаю в Deque размеры переменной
+        Deque stackOne = new Deque(String.valueOf(OneNum).length());
+        Deque stackTwo = new Deque(String.valueOf(TwoNum).length());
+        Deque stackRez = new Deque(String.valueOf(RezOfOneTwo).length());
+        Deque stackRezSum = new Deque(String.valueOf(RezSumOfOneTwo).length());
+
+        // помещаю 1 переменную в Deque, каждая цифра - отдельный узел
+        while (!stackOne.isFull()) {
+            int OneNum1 = OneNum % 10;
+            OneNum = OneNum / 10;
+            stackOne.push(OneNum1);
+        }
+
+        // Тест на Overflow (удали коментарии в следующей строке)
+        // stackOne.push(1);
+
+        // вывожу размер введеной 1 переменной
+        System.out.println("Размер: " + stackOne.size());
+
+        // помещаю 2 переменную в Deque, каждая цифра - отдельный узел
+        while (!stackTwo.isFull()) {
+            int TwoNum1 = TwoNum % 10;
+            TwoNum = TwoNum / 10;
+            stackTwo.push(TwoNum1);
+        }
+        // вывожу размер введеной 2 переменной
+        System.out.println("Размер: " + stackTwo.size());
+
+        // извлекаю 1 переменную из Deque
+        while (!stackOne.isEmpty()) {
+            System.out.print(stackOne.pop() + " ");
+        }
+
+        // Тест на Underflow (удали коментарии в следующей строке)
+        // System.out.print(stackOne.pop() + " ");
+
+        // извлекаю 2 переменную из Deque
+        while (!stackTwo.isEmpty()) {
+            System.out.print(stackTwo.pop() + " ");
+        }
+        System.out.println();
+
+        //	System.out.println("The top element is " + stackOne.peek());
+        ////////////////////
+
+        // помещаю результат умнажения в Deque, каждая цифра - отдельный узел
+        while (!stackRez.isFull()) {
+            int RezOfOneTwo1 = RezOfOneTwo % 10;
+            RezOfOneTwo = RezOfOneTwo / 10;
+            stackRez.push(RezOfOneTwo1);
+        }
+        // извлекаю результат умножения из Deque, очищая сам Deque
+        System.out.print("Multiplication: ");
+        while (!stackRez.isEmpty()) {
+            System.out.print(stackRez.pop() + " ");
+        }
+        System.out.println();
+        System.out.println("Размер: " + stackRez.size());
+        ////////////////////
+
+        // помещаю результата суммирования в Deque, каждая цифра - отдельный узел
+        while (!stackRezSum.isFull()) {
+            int RezSumOfOneTwo1 = RezSumOfOneTwo % 10;
+            RezSumOfOneTwo = RezSumOfOneTwo / 10;
+            stackRezSum.push(RezSumOfOneTwo1);
+        }
+
+        // извлекаю результат суммировани из Deque, очищая сам Deque
+        System.out.print("Sum: ");
+        while (!stackRezSum.isEmpty()) {
+            System.out.print(stackRezSum.pop() + " ");
+        }
+        System.out.println();
+        System.out.println("Размер: " + stackRezSum.size());
+
+
+    }
 }
