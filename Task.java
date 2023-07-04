@@ -14,7 +14,7 @@ class Deque
 	// Constructor to initialize the stack
 	Deque(int size)
 	{
-		arr = new int[size];
+		arr = new int[size+1];
 		capacity = size;
 		top = -1;
 	}
@@ -24,11 +24,11 @@ class Deque
 	{
 		if (isFull())
 		{
-			System.out.println("Overflow\nProgram Terminated\n");
+			System.out.println("Overflow");
 			System.exit(-1);
 		}
 
-		System.out.println("Inserting " + x);
+		System.out.println("add " + x);
 		arr[++top] = x;
 	}
 
@@ -38,7 +38,7 @@ class Deque
 		// check for stack underflow
 		if (isEmpty())
 		{
-			System.out.println("Underflow\nProgram Terminated");
+			System.out.println("Underflow");
 			System.exit(-1);
 		}
 		// decrease stack size by 1 and (optionally) return the popped element
@@ -78,13 +78,15 @@ class Main
 {
 	public static void main (String[] args)
 	{
-	    int OneNum = 11;
-	    int TwoNum = 21;
+	    int OneNum = -111;
+	    int TwoNum = 22;
 	    int RezOfOneTwo = OneNum * TwoNum;
+	    int RezSumOfOneTwo = OneNum + TwoNum;
 	    
 		Deque stackOne = new Deque(String.valueOf(OneNum).length());
 		Deque stackTwo = new Deque(String.valueOf(TwoNum).length());
 		Deque stackRez = new Deque(String.valueOf(RezOfOneTwo).length());
+		Deque stackRezSum = new Deque(String.valueOf(RezSumOfOneTwo).length());
 		
 		while (!stackOne.isFull())
 		{
@@ -113,17 +115,41 @@ class Main
 		{
 		    System.out.print(stackTwo.pop() + " ");
 		}
+		System.out.println();
 		
-	//	System.out.println("The top element is " + stackOne.peek());
-		
-		
+	    //	System.out.println("The top element is " + stackOne.peek());
+		////////////////////
 		while (!stackRez.isFull())
 		{
 		    int RezOfOneTwo1 = RezOfOneTwo % 10;
 		    RezOfOneTwo = RezOfOneTwo / 10;
-		    stackOne.push(RezOfOneTwo1);
+		    stackRez.push(RezOfOneTwo1);
 		}
+		
+		System.out.print("Multiplication: ");
+		while (!stackRez.isEmpty())
+		{
+		    System.out.print(stackRez.pop() + "");
+		}
+		System.out.println();
 		System.out.println("The stack size is " + stackRez.size());
+		////////////////////
+		
+		
+		while (!stackRezSum.isFull())
+		{
+		    int RezSumOfOneTwo1 = RezSumOfOneTwo % 10;
+		    RezSumOfOneTwo = RezSumOfOneTwo / 10;
+		    stackRezSum.push(RezSumOfOneTwo1);
+		}
+		
+		System.out.print("Sum: ");
+		while (!stackRezSum.isEmpty())
+		{
+		    System.out.print(stackRezSum.pop() + " ");
+		}
+		System.out.println();
+		System.out.println("The stack size is " + stackRezSum.size());
 		
 
 	}	
