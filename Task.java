@@ -63,7 +63,7 @@ class Deque {
     }
 }
 
-class Task {
+class Main {
     public static void main(String[] args) {
         // ввожу числа
         int OneNum = -87;
@@ -80,7 +80,7 @@ class Task {
         Deque stackRez = new Deque(String.valueOf(RezOfOneTwo).length());
         Deque stackRezSum = new Deque(String.valueOf(RezSumOfOneTwo).length());
 
-        // помещаю 1 переменную в Deque, каждая цифра - отдельный узел
+        // помещаю 1 переменную в Deque, каждая цифра - отдельный узел (заполнение в обратном порядке)
         while (!stackOne.isFull()) {
             int OneNum1 = OneNum % 10;
             OneNum = OneNum / 10;
@@ -93,7 +93,7 @@ class Task {
         // вывожу размер введеной 1 переменной
         System.out.println("Размер: " + stackOne.size());
 
-        // помещаю 2 переменную в Deque, каждая цифра - отдельный узел
+        // помещаю 2 переменную в Deque, каждая цифра - отдельный узел (заполнение в обратном порядке)
         while (!stackTwo.isFull()) {
             int TwoNum1 = TwoNum % 10;
             TwoNum = TwoNum / 10;
@@ -122,8 +122,17 @@ class Task {
         // помещаю результат умнажения в Deque, каждая цифра - отдельный узел
         while (!stackRez.isFull()) {
             int RezOfOneTwo1 = RezOfOneTwo % 10;
-            RezOfOneTwo = RezOfOneTwo / 10;
+            
+            if (RezOfOneTwo < 0){
+                
+                RezOfOneTwo = (RezOfOneTwo / 10) *(-1);
+            }
+            else {
+                 RezOfOneTwo = RezOfOneTwo / 10;        
+                
+            }
             stackRez.push(RezOfOneTwo1);
+           
         }
         // извлекаю результат умножения из Deque, очищая сам Deque
 
@@ -138,7 +147,12 @@ class Task {
         // помещаю результата суммирования в Deque, каждая цифра - отдельный узел
         while (!stackRezSum.isFull()) {
             int RezSumOfOneTwo1 = RezSumOfOneTwo % 10;
-            RezSumOfOneTwo = RezSumOfOneTwo / 10;
+            if (RezSumOfOneTwo < 0){
+                RezSumOfOneTwo = (RezSumOfOneTwo / 10) * (-1);
+            }
+            else {
+                RezSumOfOneTwo = RezSumOfOneTwo / 10;
+            }
             stackRezSum.push(RezSumOfOneTwo1);
         }
 
